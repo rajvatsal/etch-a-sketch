@@ -1,0 +1,18 @@
+.row{
+    display: flex;
+    background-color: rgb(0%, 0%, 0%, 0%);
+    gap: 1px;
+    margin-top: 1px;
+}
+.square{
+    width: 16px;
+    height: 16px;
+    background-color: cyan;
+}
+#row-group{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
