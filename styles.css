@@ -7,7 +7,7 @@
 .square{
     width: 16px;
     height: 16px;
-    background-color: cyan;
+    background-color: rgb(153, 153, 153);
 }
 #row-group{
     display: flex;
