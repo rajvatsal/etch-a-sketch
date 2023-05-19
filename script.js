@@ -1,4 +1,5 @@
 function createSquares(rowNum, columnNum){
+    removeBodyChildren();
     let body = document.querySelector('body');
     let rowGroup = document.createElement('div');
     rowGroup.setAttribute('id', 'row-group');
@@ -16,8 +17,9 @@ function createSquares(rowNum, columnNum){
 }
 function removeBodyChildren(){
     let body = document.querySelector('body');
+    console.log(body);
     while (body.hasChildNodes()){
-        body.remove(body.firstChild);
+        body.removeChild(body.firstChild);
     }
 }
 let row = prompt("enter row number");
