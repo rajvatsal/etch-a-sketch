@@ -42,6 +42,7 @@ function eraseInStylus(){
     let square = document.querySelectorAll('.square');
     square.forEach(singleSquare => singleSquare.addEventListener('mouseover', (e) => {
         e.target.classList.remove('draw');
+        e.target.removeAttribute('style');
     }))
 }
 function getRandomColor(i){
@@ -52,7 +53,7 @@ function drawRandom(){
     let square = document.querySelectorAll('.square');
     square.forEach(singleSquare => singleSquare.addEventListener('mouseover', (e) => {
         e.target.setAttribute(`style`, `${getRandomColor(i)}`);
-        i -= 10;
+        i = i - 10;
     }))
 }
 
@@ -70,11 +71,11 @@ eraseInStylusButton.addEventListener('click', eraseInStylus);
 penButton.addEventListener('click', drawInStylus);
 randomColorButton.addEventListener('click', drawRandom);
 clearStylus.addEventListener('click', () => {
-    i = 100;
     let square = document.querySelectorAll('.square');
     square.forEach(singleSquare => {
         singleSquare.classList.remove('draw');;
         singleSquare.removeAttribute('style');
+        i = 110;
     })});
 buttonAll.forEach(button => button.addEventListener('mouseover', (e) => {
     e.target.classList.add('hover');
