@@ -71,8 +71,10 @@ penButton.addEventListener('click', drawInStylus);
 randomColorButton.addEventListener('click', drawRandom);
 clearStylus.addEventListener('click', () => {
     let square = document.querySelectorAll('.square');
-    square.forEach(singleSquare => singleSquare.classList.remove('draw'));
-});
+    square.forEach(singleSquare => {
+        singleSquare.classList.remove('draw');;
+        singleSquare.removeAttribute('style');
+    })});
 buttonAll.forEach(button => button.addEventListener('mouseover', (e) => {
     e.target.classList.add('hover');
 }));
