@@ -62,6 +62,7 @@ let penButton = document.querySelector('.pen');
 let randomColorButton = document.querySelector('.random-color')
 let square = document.querySelectorAll('.square');
 let clearStylus = document.querySelector('.clear-stylus');
+let buttonAll = document.querySelectorAll('button');
 let i = 110;
 
 generateStylusButton.addEventListener('click', generateStylus);
@@ -72,3 +73,9 @@ clearStylus.addEventListener('click', () => {
     let square = document.querySelectorAll('.square');
     square.forEach(singleSquare => singleSquare.classList.remove('draw'));
 });
+buttonAll.forEach(button => button.addEventListener('mouseover', (e) => {
+    e.target.classList.add('hover');
+}));
+buttonAll.forEach(button => button.addEventListener('mouseleave', (e) => {
+    e.target.classList.remove('hover');
+}))
