@@ -1,9 +1,12 @@
-function createSquares(rowNum, columnNum){
-    removeBodyChildren();
-    let body = document.querySelector('body');
+function createSquares(e){
+    e.stopPropagation();
+    clearMain();
+    let rowNum = prompt("enter row number");
+    let columnNum = prompt("enter column number");
+    let main = document.querySelector('main');
     let rowGroup = document.createElement('div');
     rowGroup.setAttribute('id', 'row-group');
-    body.appendChild(rowGroup);
+    main.appendChild(rowGroup);
     for (let i = 0; i < rowNum; i++){
         let row = document.createElement('div');
         row.classList.add('row');
@@ -15,13 +18,12 @@ function createSquares(rowNum, columnNum){
         }
     }
 }
-function removeBodyChildren(){
-    let body = document.querySelector('body');
-    console.log(body);
-    while (body.hasChildNodes()){
-        body.removeChild(body.firstChild);
+function clearMain(){
+    let main = document.querySelector('main');
+    console.log(main);
+    while (main.hasChildNodes()){
+        main.removeChild(main.firstChild);        
     }
 }
-let row = prompt("enter row number");
-let column = prompt("enter column number");
-createSquares(row, column);
+let button = document.querySelector('button');
+button.addEventListener('click', createSquares);
