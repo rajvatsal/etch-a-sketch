@@ -8,6 +8,8 @@ function generateStylus(e){
     let main = document.querySelector('main');
     let rowGroup = document.createElement('div');
 
+    if (+rowNum === 0) rowNum = 64;
+    if (+columnNum === 0) columnNum = 64;
     rowGroup.setAttribute('id', 'row-group');
     main.appendChild(rowGroup);
 
@@ -22,7 +24,6 @@ function generateStylus(e){
             row.appendChild(square);
         }
     }
-    drawInStylus();
 }
 function clearMain(){
     let main = document.querySelector('main');
@@ -45,6 +46,8 @@ function eraseInStylus(){
 }
 let generateStylusButton = document.querySelector('.generate-stylus');
 let eraseInStylusButton = document.querySelector('.eraser');
+let penButton = document.querySelector('.pen');
 
 generateStylusButton.addEventListener('click', generateStylus);
 eraseInStylusButton.addEventListener('click', eraseInStylus);
+penButton.addEventListener('click', drawInStylus);
