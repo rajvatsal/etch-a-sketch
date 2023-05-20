@@ -1,3 +1,26 @@
+ /* Fira Sans bold */
+ @font-face{
+    font-family: "Fira Sans";
+    src: url('fonts/fira/eot/FiraSans-Bold.eot');
+    src: url('fonts/fira/eot/FiraSans-Bold.eot') format('embedded-opentype'),
+         url('fonts/fira/woff/FiraSans-Bold.woff') format('woff'),
+         url('fonts/fira/woff2/FiraSans-Bold.woff2') format('woff2'),
+         url('fonts/fira/woff2/FiraSans-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+/* Fira Sans bold italic */
+@font-face {
+    font-family: "Fira Sans";
+    src: url('fonts/fira/eot/FiraSans-BoldItalic.eot');
+    src: url('fonts/fira/eot/FiraSans-BoldItalic.eot') format('embedded-opentype'),
+         url('fonts/fira/woff2/FiraSans-BoldItalic.woff2') format('woff2'),
+         url('fonts/fira/woff/FiraSans-BoldItalic.woff') format('woff'),
+         url('fonts/fira/woff2/FiraSans-BoldItalic.ttf') format('truetype');
+    font-weight: 700;
+    font-style: italic;
+}
+
 .row{
     display: flex;
     background-color: rgb(0%, 0%, 0%, 0%);
@@ -10,10 +33,55 @@
 #row-group{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     height: 100%;
 }
 .draw{
     background-color: rgb(0, 0, 0);
+}
+button{ 
+    width: 200px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    border-width: 0;
+    font-weight: bold;
+    font-size: 10px;
+}
+.button-container{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.button-main{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+header{
+    text-align: start;
+    font-weight: bold;
+    font-size: 100px;
+    color: rgb(255, 255, 255);
+    margin-bottom:50px;
+    background-color:rgba(0%, 0%, 0%, 50%);
+    padding: 50px 10px 50px 80px;
+    border-radius: 5px;
+}
+body{
+    font-family:"Fira Sans", monospace;
+    margin: 0 0;
+    background-image:url("./pics/pexels-ave-calvar-martinez-5038394.jpg");
+    background-size:cover;
+}
+em{
+    color:rgb(0, 0, 0);
+    background-color: white;
+    padding-right: 10px;
+    padding-left: 10px; 
+}
+.hover{
+    transform:all scale(1.1);
+    background-color: white;
+    color: black;
 }
