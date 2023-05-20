@@ -61,9 +61,14 @@ let eraseInStylusButton = document.querySelector('.eraser');
 let penButton = document.querySelector('.pen');
 let randomColorButton = document.querySelector('.random-color')
 let square = document.querySelectorAll('.square');
-let i = 100;
+let clearStylus = document.querySelector('.clear-stylus');
+let i = 110;
 
 generateStylusButton.addEventListener('click', generateStylus);
 eraseInStylusButton.addEventListener('click', eraseInStylus);
 penButton.addEventListener('click', drawInStylus);
 randomColorButton.addEventListener('click', drawRandom);
+clearStylus.addEventListener('click', () => {
+    let square = document.querySelectorAll('.square');
+    square.forEach(singleSquare => singleSquare.classList.remove('draw'));
+});
