@@ -2,6 +2,7 @@ function generateStylus(e){
     e.stopPropagation();
     clearMain();
 
+    i = 100;//to reset the value of each time new stylus is created to work correctly for drawRandom()
     let size = prompt("Enter the size of square pixel in your grid in 'px'");
     let rowNum = prompt("enter row number");
     let columnNum = prompt("enter column number");
@@ -33,7 +34,6 @@ function clearMain(){
 }
 function drawInStylus(){
     let square = document.querySelectorAll('.square');
-
     square.forEach(singleSquare => singleSquare.addEventListener('mouseover', (e) => {
         e.target.classList.add('draw');
     }))
@@ -44,10 +44,26 @@ function eraseInStylus(){
         e.target.classList.remove('draw');
     }))
 }
+function getRandomColor(i){
+    if (i < 0) i = 0;
+    return `background-color: rgb(${Math.floor(Math.random() * i)}%, ${Math.floor(Math.random() * i)}%, ${Math.floor(Math.random() * i)}%`
+}
+function drawRandom(){
+    let square = document.querySelectorAll('.square');
+    square.forEach(singleSquare => singleSquare.addEventListener('mouseover', (e) => {
+        e.target.setAttribute(`style`, `${getRandomColor(i)}`);
+        i -= 10;
+    }))
+}
+
 let generateStylusButton = document.querySelector('.generate-stylus');
 let eraseInStylusButton = document.querySelector('.eraser');
 let penButton = document.querySelector('.pen');
+let randomColorButton = document.querySelector('.random-color')
+let square = document.querySelectorAll('.square');
+let i = 100;
 
 generateStylusButton.addEventListener('click', generateStylus);
 eraseInStylusButton.addEventListener('click', eraseInStylus);
 penButton.addEventListener('click', drawInStylus);
+randomColorButton.addEventListener('click', drawRandom);
