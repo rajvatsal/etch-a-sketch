@@ -70,6 +70,7 @@ eraseInStylusButton.addEventListener('click', eraseInStylus);
 penButton.addEventListener('click', drawInStylus);
 randomColorButton.addEventListener('click', drawRandom);
 clearStylus.addEventListener('click', () => {
+    i = 100;
     let square = document.querySelectorAll('.square');
     square.forEach(singleSquare => {
         singleSquare.classList.remove('draw');;
