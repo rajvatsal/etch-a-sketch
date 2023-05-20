@@ -2,6 +2,7 @@ function generateStylus(e){
     e.stopPropagation();
     clearMain();
 
+    let size = prompt("Enter the size of square pixel in your grid in 'px'");
     let rowNum = prompt("enter row number");
     let columnNum = prompt("enter column number");
     let main = document.querySelector('main');
@@ -17,6 +18,7 @@ function generateStylus(e){
         for (let j = 0; j < columnNum; j++){
             let square = document.createElement('div');
             square.classList.add('square');
+            square.setAttribute(`style`, `height: ${size}px; width: ${size}px;`)
             row.appendChild(square);
         }
     }
