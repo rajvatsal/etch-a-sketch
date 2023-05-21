@@ -33,6 +33,7 @@ function clearMain(){
     }
 }
 function drawInStylus(e){
+    e.target.setAttribute(`style`, `height: ${size}px; width: ${size}px;`)
     e.target.classList.add('draw');
     i = 100;
 }
