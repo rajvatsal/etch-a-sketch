@@ -32,29 +32,28 @@ function clearMain(){
         main.removeChild(main.firstChild);        
     }
 }
-function drawInStylus(){
-    let square = document.querySelectorAll('.square');
-    square.forEach(singleSquare => singleSquare.addEventListener('mouseover', (e) => {
-        e.target.classList.add('draw');
-    }))
+function drawInStylus(e){
+    e.target.classList.add('draw');
+    i = 110;
 }
-function eraseInStylus(){
-    let square = document.querySelectorAll('.square');
-    square.forEach(singleSquare => singleSquare.addEventListener('mouseover', (e) => {
+function eraseInStylus(e){
         e.target.classList.remove('draw');
         e.target.removeAttribute('style');
-    }))
+        i = 110;
 }
 function getRandomColor(i){
     if (i < 0) i = 0;
     return `background-color: rgb(${Math.floor(Math.random() * i)}%, ${Math.floor(Math.random() * i)}%, ${Math.floor(Math.random() * i)}%`
 }
-function drawRandom(){
+function drawRandom(e){
+    e.target.setAttribute(`style`, `${getRandomColor(i)}`);
+    i = i - 10;
+}
+function removePreviousEventListeners(){
     let square = document.querySelectorAll('.square');
-    square.forEach(singleSquare => singleSquare.addEventListener('mouseover', (e) => {
-        e.target.setAttribute(`style`, `${getRandomColor(i)}`);
-        i = i - 10;
-    }))
+    square.forEach(singleSquare => singleSquare.removeEventListener('mouseover', eraseInStylus));
+    square.forEach(singleSquare => singleSquare.removeEventListener('mouseover', drawInStylus));
+    square.forEach(singleSquare => singleSquare.removeEventListener('mouseover', drawRandom));
 }
 
 let generateStylusButton = document.querySelector('.generate-stylus');
@@ -62,21 +61,39 @@ let eraseInStylusButton = document.querySelector('.eraser');
 let penButton = document.querySelector('.pen');
 let randomColorButton = document.querySelector('.random-color')
 let square = document.querySelectorAll('.square');
-let clearStylus = document.querySelector('.clear-stylus');
+let clearStylusButton = document.querySelector('.clear-stylus');
 let buttonAll = document.querySelectorAll('button');
 let i = 110;
 
 generateStylusButton.addEventListener('click', generateStylus);
-eraseInStylusButton.addEventListener('click', eraseInStylus);
-penButton.addEventListener('click', drawInStylus);
-randomColorButton.addEventListener('click', drawRandom);
-clearStylus.addEventListener('click', () => {
+
+eraseInStylusButton.addEventListener('click', () => {
+    removePreviousEventListeners();
+
+    let square = document.querySelectorAll('.square');
+    square.forEach(singleSquare => singleSquare.addEventListener('mouseover', eraseInStylus))
+})
+penButton.addEventListener('click', () => {
+    removePreviousEventListeners();
+
+    let square = document.querySelectorAll('.square');
+    square.forEach(singleSquare => singleSquare.addEventListener('mouseover', drawInStylus))
+})
+randomColorButton.addEventListener('click', () => {
+    removePreviousEventListeners();
+
+    let square = document.querySelectorAll('.square');
+    square.forEach(singleSquare => singleSquare.addEventListener('mouseover', drawRandom))
+})
+
+clearStylusButton.addEventListener('click', () => {
     let square = document.querySelectorAll('.square');
     square.forEach(singleSquare => {
         singleSquare.classList.remove('draw');;
         singleSquare.removeAttribute('style');
         i = 110;
-    })});
+    })
+});
 buttonAll.forEach(button => button.addEventListener('mouseover', (e) => {
     e.target.classList.add('hover');
 }));
