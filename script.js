@@ -39,7 +39,7 @@ function drawInStylus(e){
 }
 function eraseInStylus(e){
         e.target.classList.remove('draw');
-        e.target.removeAttribute('style');
+        e.target.style.cssText = `height: ${size}px; width: ${size}px;`
         i = 100;
 }
 function drawRandom(e){
@@ -89,7 +89,7 @@ clearStylusButton.addEventListener('click', () => {
     let square = document.querySelectorAll('.square');
     square.forEach(singleSquare => {
         singleSquare.classList.remove('draw');;
-        singleSquare.removeAttribute('style');
+        singleSquare.style.cssText = `height: ${size}px; width: ${size}px;`;
         i = 100;
     })
 });
