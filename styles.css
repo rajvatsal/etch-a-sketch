@@ -84,11 +84,11 @@ footer{
     text-align: center;
     background-color: rgba(0%, 0%, 0%, 50%);
     color: white;
-    flex-grow: 1;
     font-size: 15px;
+    margin-top: 50px;
 }
 .button-main-footer{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content:last baseline;
 }
