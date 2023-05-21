@@ -96,5 +96,6 @@ footer{
 .button-main-footer{
     display: flex;
     flex-direction: column;
-    gap: 180px;
+    justify-content: space-between;
+    gap: 100px;
 }
