@@ -3,7 +3,7 @@ function generateStylus(e){
     clearMain();
 
     i = 100;//to reset the value of each time new stylus is created to work correctly for drawRandom()
-    let size = prompt("Enter the size of square pixel in your grid in 'px'");
+    size = prompt("Enter the size of square pixel in your grid in 'px'");
     let rowNum = prompt("enter row number");
     let columnNum = prompt("enter column number");
     let main = document.querySelector('main');
@@ -11,6 +11,7 @@ function generateStylus(e){
 
     if (+rowNum === 0) rowNum = 64;
     if (+columnNum === 0) columnNum = 64;
+    if (+size === 0) size = 8;
     rowGroup.setAttribute('id', 'row-group');
     main.appendChild(rowGroup);
 
@@ -34,19 +35,16 @@ function clearMain(){
 }
 function drawInStylus(e){
     e.target.classList.add('draw');
-    i = 110;
+    i = 100;
 }
 function eraseInStylus(e){
         e.target.classList.remove('draw');
         e.target.removeAttribute('style');
-        i = 110;
-}
-function getRandomColor(i){
-    if (i < 0) i = 0;
-    return `background-color: rgb(${Math.floor(Math.random() * i)}%, ${Math.floor(Math.random() * i)}%, ${Math.floor(Math.random() * i)}%`
+        i = 100;
 }
 function drawRandom(e){
-    e.target.setAttribute(`style`, `${getRandomColor(i)}`);
+    if (i < 0) i = 0;
+    e.target.setAttribute(`style`, `background-color: rgb(${Math.floor(Math.random() * i)}%, ${Math.floor(Math.random() * i)}%, ${Math.floor(Math.random() * i)}%); width: ${size}px; height: ${size}px`);
     i = i - 10;
 }
 function removePreviousEventListeners(){
@@ -63,7 +61,8 @@ let randomColorButton = document.querySelector('.random-color')
 let square = document.querySelectorAll('.square');
 let clearStylusButton = document.querySelector('.clear-stylus');
 let buttonAll = document.querySelectorAll('button');
-let i = 110;
+let size = 0;
+let i = 100;
 
 generateStylusButton.addEventListener('click', generateStylus);
 
@@ -91,7 +90,7 @@ clearStylusButton.addEventListener('click', () => {
     square.forEach(singleSquare => {
         singleSquare.classList.remove('draw');;
         singleSquare.removeAttribute('style');
-        i = 110;
+        i = 100;
     })
 });
 buttonAll.forEach(button => button.addEventListener('mouseover', (e) => {
