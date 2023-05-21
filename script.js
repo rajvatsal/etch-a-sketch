@@ -81,6 +81,7 @@ penButton.addEventListener('click', () => {
 randomColorButton.addEventListener('click', () => {
     removePreviousEventListeners();
 
+    i = 100;
     let square = document.querySelectorAll('.square');
     square.forEach(singleSquare => singleSquare.addEventListener('mouseover', drawRandom))
 })

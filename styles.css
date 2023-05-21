@@ -54,7 +54,9 @@ button{
 .button-main{
     display: flex;
     justify-content: center;
+    align-items: stretch;
     gap: 10px;
+    flex-wrap: wrap;
 }
 header{
     text-align: start;
@@ -71,7 +73,7 @@ body{
     margin: 0 0;
     background-image:url("./pics/pexels-ave-calvar-martinez-5038394.jpg");
     background-size: cover;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
 }
 em{
     color: rgb(0, 0, 0);
@@ -84,9 +86,15 @@ em{
     color: black;
 }
 footer{
-    padding: 20px 0 20px 0;
+    padding: 18px 0 18px 0;
     text-align: center;
     background-color: rgba(0%, 0%, 0%, 50%);
     color: white;
+    flex-grow: 1;
     font-size: 15px;
+}
+.button-main-footer{
+    display: flex;
+    flex-direction: column;
+    gap: 180px;
 }
