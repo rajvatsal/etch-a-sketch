@@ -3,23 +3,22 @@ function generateStylus(e){
     clearMain();
 
     i = 100;//to reset the value of each time new stylus is created to work correctly for drawRandom()
-    size = prompt("Enter the size of square pixel in your grid in 'px'");
-    let rowNum = prompt("enter row number");
-    let columnNum = prompt("enter column number");
-    let main = document.querySelector('main');
-    let rowGroup = document.createElement('div');
-
-    if (+rowNum === 0) rowNum = 64;
-    if (+columnNum === 0) columnNum = 64;
+    
+    let side = prompt("Enter side of the square");
+    if (side > 100) return alert("Side cannot be more than 100");
+    size = Math.sqrt(262144/(side * side));
+    
+    if (+side === 0) side = 64;
     if (+size === 0) size = 8;
-    rowGroup.setAttribute('id', 'row-group');
-    main.appendChild(rowGroup);
 
-    for (let i = 0; i < rowNum; i++){
+    printStylus(side, size);
+}
+function printStylus(side, size){
+    for (let i = 0; i < side; i++){
         let row = document.createElement('div');
         row.classList.add('row');
-        rowGroup.appendChild(row);
-        for (let j = 0; j < columnNum; j++){
+        main.appendChild(row);
+        for (let j = 0; j < side; j++){
             let square = document.createElement('div');
             square.classList.add('square');
             square.setAttribute(`style`, `height: ${size}px; width: ${size}px;`)
@@ -61,11 +60,14 @@ let randomColorButton = document.querySelector('.random-color')
 let square = document.querySelectorAll('.square');
 let clearStylusButton = document.querySelector('.clear-stylus');
 let buttonAll = document.querySelectorAll('button');
-let size = 0;
+let main = document.querySelector('main');
+let size = 8;
+let side = 64;
 let i = 100;
 
-generateStylusButton.addEventListener('click', generateStylus);
+printStylus(side, size);
 
+generateStylusButton.addEventListener('click', generateStylus);
 eraseInStylusButton.addEventListener('click', () => {
     removePreviousEventListeners();
 

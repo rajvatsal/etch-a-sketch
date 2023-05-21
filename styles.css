@@ -28,11 +28,6 @@
 .square{
     background-color: rgb(241, 241, 241);
 }
-#row-group{
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
 .draw{
     background-color: rgb(0, 0, 0);
 }
@@ -73,7 +68,6 @@ body{
     margin: 0 0;
     background-image:url("./pics/pexels-ave-calvar-martinez-5038394.jpg");
     background-size: cover;
-    background-repeat: repeat;
 }
 em{
     color: rgb(0, 0, 0);
@@ -97,5 +91,4 @@ footer{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 100px;
 }
