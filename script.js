@@ -11,10 +11,10 @@ function generateStylus(e) {
 	if (+side === 0) side = 64;
 	if (+size === 0) size = 8;
 
-	printStylus(side, size);
+	renderStylus(side, size);
 }
 
-function printStylus(side, size) {
+function renderStylus(side, size) {
 	for (let i = 0; i < side; i++) {
 		let row = document.createElement("div");
 		row.classList.add("row");
@@ -27,22 +27,26 @@ function printStylus(side, size) {
 		}
 	}
 }
+
 function clearMain() {
 	let main = document.querySelector(".draw-board");
 	while (main.hasChildNodes()) {
 		main.removeChild(main.firstChild);
 	}
 }
+
 function drawInStylus(e) {
 	e.target.setAttribute(`style`, `height: ${size}px; width: ${size}px;`);
 	e.target.classList.add("draw");
 	i = 100;
 }
+
 function eraseInStylus(e) {
 	e.target.classList.remove("draw");
 	e.target.style.cssText = `height: ${size}px; width: ${size}px;`;
 	i = 100;
 }
+
 function drawRandom(e) {
 	if (i < 0) i = 0;
 	e.target.setAttribute(
@@ -51,6 +55,7 @@ function drawRandom(e) {
 	);
 	i = i - 10;
 }
+
 function removePreviousEventListeners() {
 	let square = document.querySelectorAll(".square");
 	square.forEach((singleSquare) =>
@@ -76,7 +81,7 @@ let size = 8;
 let side = 64;
 let i = 100;
 
-printStylus(side, size);
+renderStylus(side, size);
 
 generateStylusButton.addEventListener("click", generateStylus);
 eraseInStylusButton.addEventListener("click", () => {
@@ -87,6 +92,7 @@ eraseInStylusButton.addEventListener("click", () => {
 		singleSquare.addEventListener("mouseover", eraseInStylus),
 	);
 });
+
 penButton.addEventListener("click", () => {
 	removePreviousEventListeners();
 
@@ -95,6 +101,7 @@ penButton.addEventListener("click", () => {
 		singleSquare.addEventListener("mouseover", drawInStylus),
 	);
 });
+
 randomColorButton.addEventListener("click", () => {
 	removePreviousEventListeners();
 
@@ -113,11 +120,13 @@ clearStylusButton.addEventListener("click", () => {
 		i = 100;
 	});
 });
+
 buttonAll.forEach((button) =>
 	button.addEventListener("mouseover", (e) => {
 		e.target.classList.add("hover");
 	}),
 );
+
 buttonAll.forEach((button) =>
 	button.addEventListener("mouseleave", (e) => {
 		e.target.classList.remove("hover");
