@@ -105,7 +105,8 @@ header {
 }
 
 body {
-	--bg-color: #7130002e;
+	--clr-neutral-600: #151515bf;
+	--clr-primary-400: #71300057;
 
 	font-family: "Fira Sans", monospace;
 	display: flex;
@@ -113,7 +114,7 @@ body {
 	margin: 0 0;
 	background-size: cover;
 	background-position: top right;
-	border-image: fill 1 linear-gradient(var(--bg-color), var(--bg-color));
+	border-image: fill 1 radial-gradient(transparent, var(--clr-primary-400));
 }
 
 em {
