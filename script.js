@@ -2,8 +2,6 @@ function generateStylus(e) {
 	e.stopPropagation();
 	clearstylus();
 
-	i = 100; //to reset the value of each time new stylus is created to work correctly for drawRandom()
-
 	let side = prompt("Enter side of the square");
 	if (side > 100) return alert("Side cannot be more than 100");
 	size = Math.sqrt(262144 / (side * side));
@@ -38,13 +36,11 @@ function clearstylus() {
 function drawInStylus(e) {
 	e.target.setAttribute("style", `height: ${size}px; width: ${size}px;`);
 	e.target.classList.add("draw");
-	i = 100;
 }
 
 function eraseInStylus(e) {
 	e.target.classList.remove("draw");
 	e.target.style.cssText = `height: ${size}px; width: ${size}px;`;
-	i = 100;
 }
 
 const getRandom = (upperBound) => Math.floor(Math.random() * (upperBound + 1));
@@ -71,7 +67,6 @@ const buttonAll = document.querySelectorAll("button");
 const stylus = document.querySelector(".draw-board");
 const side = 64;
 let size = 8;
-let i = 100;
 
 renderStylus(side, size);
 
@@ -129,7 +124,6 @@ clearStylusButton.addEventListener("click", () => {
 	squares.forEach((square) => {
 		square.classList.remove("draw");
 		square.style.cssText = `height: ${size}px; width: ${size}px;`;
-		i = 100;
 	});
 });
 
