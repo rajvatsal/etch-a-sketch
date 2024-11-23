@@ -1,35 +1,25 @@
 function generateStylus(e) {
 	e.stopPropagation();
-	clearstylus();
 
-	let side = prompt("Enter side of the square");
-	if (side > 100) return alert("Side cannot be more than 100");
-	size = Math.sqrt(262144 / (side * side));
-
-	if (+side === 0) side = 64;
-	if (+size === 0) size = 8;
-
-	renderStylus(side, size);
+	const totalSquares = prompt("Number of squares on each side");
+	if (totalSquares > 100) return alert("Squares cannot be more than 100");
+	const squareLength = stylus.offsetWidth / totalSquares;
+	stylus.innerHTML = "";
+	renderStylus(totalSquares, squareLength);
 }
 
-function renderStylus(side, size) {
-	for (let i = 0; i < side; i++) {
+function renderStylus(totalSquares, len) {
+	for (let i = 0; i < totalSquares; i++) {
 		const row = document.createElement("div");
 		row.classList.add("row");
 		stylus.appendChild(row);
-		for (let j = 0; j < side; j++) {
+		for (let j = 0; j < totalSquares; j++) {
 			const square = document.createElement("div");
 			square.classList.add("square");
-			square.setAttribute("style", `height: ${size}px; width: ${size}px;`);
+			square.style.height = `${len}px`;
+			square.style.width = `${len}px`;
 			row.appendChild(square);
 		}
-	}
-}
-
-function clearstylus() {
-	const stylus = document.querySelector(".draw-board");
-	while (stylus.hasChildNodes()) {
-		stylus.removeChild(stylus.firstChild);
 	}
 }
 
@@ -65,10 +55,11 @@ const squares = document.querySelectorAll(".square");
 const clearStylusButton = document.querySelector(".clear-stylus");
 const buttonAll = document.querySelectorAll("button");
 const stylus = document.querySelector(".draw-board");
-const side = 64;
-let size = 8;
 
-renderStylus(side, size);
+const DEFAULT_STYLUS_WIDTH = 8;
+const DEFAULT_STYLUS_SQRS = 64;
+
+renderStylus(DEFAULT_STYLUS_SQRS, DEFAULT_STYLUS_WIDTH);
 
 function drawEventHandlerStylus(e) {
 	drawInStylus(e);
