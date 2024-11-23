@@ -1,6 +1,6 @@
 function generateStylus(e) {
 	e.stopPropagation();
-	clearMain();
+	clearstylus();
 
 	i = 100; //to reset the value of each time new stylus is created to work correctly for drawRandom()
 
@@ -18,7 +18,7 @@ function renderStylus(side, size) {
 	for (let i = 0; i < side; i++) {
 		let row = document.createElement("div");
 		row.classList.add("row");
-		main.appendChild(row);
+		stylus.appendChild(row);
 		for (let j = 0; j < side; j++) {
 			let square = document.createElement("div");
 			square.classList.add("square");
@@ -28,10 +28,10 @@ function renderStylus(side, size) {
 	}
 }
 
-function clearMain() {
-	let main = document.querySelector(".draw-board");
-	while (main.hasChildNodes()) {
-		main.removeChild(main.firstChild);
+function clearstylus() {
+	let stylus = document.querySelector(".draw-board");
+	while (stylus.hasChildNodes()) {
+		stylus.removeChild(stylus.firstChild);
 	}
 }
 
@@ -76,7 +76,7 @@ let randomColorButton = document.querySelector(".random-color");
 let square = document.querySelectorAll(".square");
 let clearStylusButton = document.querySelector(".clear-stylus");
 let buttonAll = document.querySelectorAll("button");
-let main = document.querySelector(".draw-board");
+let stylus = document.querySelector(".draw-board");
 let size = 8;
 let side = 64;
 let i = 100;
