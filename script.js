@@ -16,27 +16,27 @@ function generateStylus(e) {
 
 function renderStylus(side, size) {
 	for (let i = 0; i < side; i++) {
-		let row = document.createElement("div");
+		const row = document.createElement("div");
 		row.classList.add("row");
 		stylus.appendChild(row);
 		for (let j = 0; j < side; j++) {
-			let square = document.createElement("div");
+			const square = document.createElement("div");
 			square.classList.add("square");
-			square.setAttribute(`style`, `height: ${size}px; width: ${size}px;`);
+			square.setAttribute("style", `height: ${size}px; width: ${size}px;`);
 			row.appendChild(square);
 		}
 	}
 }
 
 function clearstylus() {
-	let stylus = document.querySelector(".draw-board");
+	const stylus = document.querySelector(".draw-board");
 	while (stylus.hasChildNodes()) {
 		stylus.removeChild(stylus.firstChild);
 	}
 }
 
 function drawInStylus(e) {
-	e.target.setAttribute(`style`, `height: ${size}px; width: ${size}px;`);
+	e.target.setAttribute("style", `height: ${size}px; width: ${size}px;`);
 	e.target.classList.add("draw");
 	i = 100;
 }
@@ -47,13 +47,12 @@ function eraseInStylus(e) {
 	i = 100;
 }
 
-function drawRandom(e) {
-	if (i < 0) i = 0;
-	e.target.setAttribute(
-		`style`,
-		`background-color: rgb(${Math.floor(Math.random() * i)}%, ${Math.floor(Math.random() * i)}%, ${Math.floor(Math.random() * i)}%); width: ${size}px; height: ${size}px`,
-	);
-	i = i - 10;
+const getRandom = (upperBound) => Math.floor(Math.random() * (upperBound + 1));
+
+function drawRandom(clr, e) {
+	console.log(e.target);
+	e.target.style.backgroundColor = `hsl(${clr.hue}deg, ${clr.saturation}%, ${clr.lightness}%)`;
+	clr.reduceLightness();
 }
 
 function removePreviousEventListeners() {
@@ -62,16 +61,16 @@ function removePreviousEventListeners() {
 	stylus.removeEventListener("mousedown", drawRandomColorsEventHandlerStylus);
 }
 
-let generateStylusButton = document.querySelector(".generate-stylus");
-let eraseInStylusButton = document.querySelector(".eraser");
-let penButton = document.querySelector(".pen");
-let randomColorButton = document.querySelector(".random-color");
-let square = document.querySelectorAll(".square");
-let clearStylusButton = document.querySelector(".clear-stylus");
-let buttonAll = document.querySelectorAll("button");
-let stylus = document.querySelector(".draw-board");
+const generateStylusButton = document.querySelector(".generate-stylus");
+const eraseInStylusButton = document.querySelector(".eraser");
+const penButton = document.querySelector(".pen");
+const randomColorButton = document.querySelector(".random-color");
+const squares = document.querySelectorAll(".square");
+const clearStylusButton = document.querySelector(".clear-stylus");
+const buttonAll = document.querySelectorAll("button");
+const stylus = document.querySelector(".draw-board");
+const side = 64;
 let size = 8;
-let side = 64;
 let i = 100;
 
 renderStylus(side, size);
@@ -93,11 +92,20 @@ function eraseEventHandlerStylus(e) {
 }
 
 function drawRandomColorsEventHandlerStylus(e) {
-	i = 100;
-	drawRandom(e);
-	stylus.addEventListener("mouseover", drawRandom);
+	const clr = {
+		hue: getRandom(360),
+		saturation: getRandom(100),
+		lightness: 50,
+		reduceLightness: function () {
+			this.lightness = this.lightness <= 0 ? 0 : this.lightness - 50 / 100;
+		},
+	};
+	const boundFn = drawRandom.bind(drawRandom, clr);
+
+	drawRandom(clr, e);
+	stylus.addEventListener("mouseover", boundFn);
 	stylus.addEventListener("mouseup", () => {
-		stylus.removeEventListener("mouseover", drawRandom);
+		stylus.removeEventListener("mouseover", boundFn);
 	});
 }
 
@@ -117,20 +125,22 @@ randomColorButton.addEventListener("click", () => {
 generateStylusButton.addEventListener("click", generateStylus);
 
 clearStylusButton.addEventListener("click", () => {
-	let square = document.querySelectorAll(".square");
-	square.forEach((singleSquare) => {
-		singleSquare.classList.remove("draw");
-		singleSquare.style.cssText = `height: ${size}px; width: ${size}px;`;
+	// biome-ignore lint/complexity/noForEach: <explanation>
+	squares.forEach((square) => {
+		square.classList.remove("draw");
+		square.style.cssText = `height: ${size}px; width: ${size}px;`;
 		i = 100;
 	});
 });
 
+// biome-ignore lint/complexity/noForEach: <explanation>
 buttonAll.forEach((button) =>
 	button.addEventListener("mouseover", (e) => {
 		e.target.classList.add("hover");
 	}),
 );
 
+// biome-ignore lint/complexity/noForEach: <explanation>
 buttonAll.forEach((button) =>
 	button.addEventListener("mouseleave", (e) => {
 		e.target.classList.remove("hover");
