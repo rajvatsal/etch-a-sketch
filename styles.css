@@ -1,133 +1,137 @@
 /* Fira Sans bold */
 @font-face {
-  font-family: "Fira Sans";
-  src: url("fonts/fira/eot/FiraSans-Bold.eot");
-  src:
-    url("fonts/fira/eot/FiraSans-Bold.eot") format("embedded-opentype"),
-    url("fonts/fira/woff/FiraSans-Bold.woff") format("woff"),
-    url("fonts/fira/woff2/FiraSans-Bold.woff2") format("woff2"),
-    url("fonts/fira/woff2/FiraSans-Bold.ttf") format("truetype");
-  font-weight: bold;
-  font-style: normal;
+	font-family: "Fira Sans";
+	src: url("fonts/fira/eot/FiraSans-Bold.eot");
+	src: url("fonts/fira/eot/FiraSans-Bold.eot") format("embedded-opentype"),
+		url("fonts/fira/woff/FiraSans-Bold.woff") format("woff"),
+		url("fonts/fira/woff2/FiraSans-Bold.woff2") format("woff2"),
+		url("fonts/fira/woff2/FiraSans-Bold.ttf") format("truetype");
+	font-weight: bold;
+	font-style: normal;
 }
 /* Fira Sans bold italic */
 @font-face {
-  font-family: "Fira Sans";
-  src: url("fonts/fira/eot/FiraSans-BoldItalic.eot");
-  src:
-    url("fonts/fira/eot/FiraSans-BoldItalic.eot") format("embedded-opentype"),
-    url("fonts/fira/woff2/FiraSans-BoldItalic.woff2") format("woff2"),
-    url("fonts/fira/woff/FiraSans-BoldItalic.woff") format("woff"),
-    url("fonts/fira/woff2/FiraSans-BoldItalic.ttf") format("truetype");
-  font-weight: 700;
-  font-style: italic;
+	font-family: "Fira Sans";
+	src: url("fonts/fira/eot/FiraSans-BoldItalic.eot");
+	src: url("fonts/fira/eot/FiraSans-BoldItalic.eot") format("embedded-opentype"),
+		url("fonts/fira/woff2/FiraSans-BoldItalic.woff2") format("woff2"),
+		url("fonts/fira/woff/FiraSans-BoldItalic.woff") format("woff"),
+		url("fonts/fira/woff2/FiraSans-BoldItalic.ttf") format("truetype");
+	font-weight: 700;
+	font-style: italic;
 }
 
 .row {
-  display: flex;
-  background-color: rgb(0%, 0%, 0%, 0%);
+	display: flex;
+	background-color: rgb(0%, 0%, 0%, 0%);
 }
 
 .square {
-  background-color: rgb(241, 241, 241);
+	background-color: rgb(241, 241, 241);
 }
 
 .draw {
-  background-color: rgb(0, 0, 0);
-}
-
-button {
-  padding: 10px 7px 10px 7px;
-  border-radius: 5px;
-  background-color: rgba(0%, 0%, 0%, 98%);
-  color: white;
-  border-width: 0;
-  font-weight: bold;
-  font-size: 10px;
-  transition: 0.2s ease-in-out 0s;
-  font-style: italic;
+	background-color: rgb(0, 0, 0);
 }
 
 .button-container {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
 }
 
-.button-main {
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
-  gap: 10px;
-  flex-wrap: wrap;
+.button-container button.hover {
+	cursor: pointer;
+	transform: scale(1.05);
+	opacity: 1;
 }
 
-header {
-  font-weight: bold;
-  font-size: 100px;
-  color: rgb(255, 255, 255);
-  margin-bottom: 50px;
-  background-color: rgba(0%, 0%, 0%, 50%);
-  padding: 50px 10px 50px 80px;
-  border-radius: 5px;
-}
+.button-container button {
+	font-size: 0.875rem;
+	padding: 10px 7px 10px 7px;
+	border-radius: 5px;
+	background-color: rgba(0%, 0%, 0%, 98%);
+	color: white;
+	border-width: 0;
+	font-weight: bold;
+	transition: 90ms ease-in-out 0s;
+	font-style: italic;
 
-@media only screen and (max-width: 640px) {
-  body {
-    background-image: image-set(
-      "./pics/background/640_background.jpg" 1x,
-      "./pics/background/1280_background.jpg" 2x,
-      "./pics/background/1920_background.jpg" 3x,
-      "./pics/background/3840_background.jpg" 4x,
-      "./pics/background/5472_background.jpg" 5x
-    );
-
-    background-size: fit;
-  }
-}
-
-@media only screen and (min-width: 641px) {
-  body {
-    background-image: image-set(
-      "./pics/background/1920_background.jpg" 1x,
-      "./pics/background/3840_background.jpg" 2x,
-      "./pics/background/5472_background.jpg" 3x
-    );
-  }
-}
-
-body {
-  font-family: "Fira Sans", monospace;
-  display: flex;
-  flex-direction: column;
-  margin: 0 0;
-  background-size: cover;
-  background-position: top right;
-}
-
-em {
-  color: rgb(0, 0, 0);
-  background-color: white;
-  padding-right: 10px;
-  padding-left: 10px;
-}
-
-.hover {
-  cursor: pointer;
-  transform: scale(1.1);
-  background-color: rgb(241, 241, 241);
-  color: black;
-}
-
-footer {
-  padding: 18px 0 18px 0;
-  margin-top: auto;
-  text-align: center;
-  background-color: rgba(0%, 0%, 0%, 50%);
-  color: white;
-  font-size: 15px;
+	opacity: 0.8;
+	will-change: transform;
 }
 
 main {
-  margin-bottom: 65px;
+	display: flex;
+	justify-content: center;
+	align-items: stretch;
+	gap: 10px;
+	flex-wrap: wrap;
+	margin-block: 120px;
+}
+
+header {
+	font-weight: bold;
+	font-size: 100px;
+	color: rgb(255, 255, 255);
+	margin-bottom: 50px;
+	background-color: rgba(0%, 0%, 0%, 50%);
+	padding: 50px 10px 50px 80px;
+	border-radius: 5px;
+}
+
+@media only screen and (max-width: 640px) {
+	body {
+		background-image: image-set(
+			"./pics/background/640_background.jpg" 1x,
+			"./pics/background/1280_background.jpg" 2x,
+			"./pics/background/1920_background.jpg" 3x,
+			"./pics/background/3840_background.jpg" 4x,
+			"./pics/background/5472_background.jpg" 5x
+		);
+
+		background-size: fit;
+	}
+}
+
+@media only screen and (min-width: 641px) {
+	body {
+		background-image: image-set(
+			"./pics/background/1920_background.jpg" 1x,
+			"./pics/background/3840_background.jpg" 2x,
+			"./pics/background/5472_background.jpg" 3x
+		);
+	}
+}
+
+body {
+	--bg-color: #7130002e;
+
+	font-family: "Fira Sans", monospace;
+	display: flex;
+	flex-direction: column;
+	margin: 0 0;
+	background-size: cover;
+	background-position: top right;
+	border-image: fill 1 linear-gradient(var(--bg-color), var(--bg-color));
+}
+
+em {
+	color: rgb(0, 0, 0);
+	background-color: white;
+	padding-right: 10px;
+	padding-left: 10px;
+}
+
+footer {
+	padding: 18px 0 18px 0;
+	margin-top: auto;
+	text-align: center;
+	background-color: rgba(0%, 0%, 0%, 50%);
+	color: white;
+	font-size: 15px;
+}
+
+.draw-board {
+	margin-bottom: 65px;
 }
