@@ -24,13 +24,16 @@ function renderStylus(totalSquares, len) {
 }
 
 function drawInStylus(e) {
-	e.target.setAttribute("style", `height: ${size}px; width: ${size}px;`);
+	e.target.setAttribute(
+		"style",
+		`height: ${DF_STYLUS_PIXEL_WIDTH}px; width: ${DF_STYLUS_PIXEL_WIDTH}px;`,
+	);
 	e.target.classList.add("draw");
 }
 
 function eraseInStylus(e) {
 	e.target.classList.remove("draw");
-	e.target.style.cssText = `height: ${size}px; width: ${size}px;`;
+	e.target.style.cssText = `height: ${DF_STYLUS_PIXEL_WIDTH}px; width: ${DF_STYLUS_PIXEL_WIDTH}px;`;
 }
 
 const getRandom = (upperBound) => Math.floor(Math.random() * (upperBound + 1));
@@ -56,10 +59,10 @@ const clearStylusButton = document.querySelector(".clear-stylus");
 const buttonAll = document.querySelectorAll("button");
 const stylus = document.querySelector(".draw-board");
 
-const DEFAULT_STYLUS_WIDTH = 8;
-const DEFAULT_STYLUS_SQRS = 64;
+const DF_STYLUS_PIXEL_WIDTH = 8;
+const DF_STYLUS_PIXEL_COUNT = 64;
 
-renderStylus(DEFAULT_STYLUS_SQRS, DEFAULT_STYLUS_WIDTH);
+renderStylus(DF_STYLUS_PIXEL_COUNT, DF_STYLUS_PIXEL_WIDTH);
 
 function drawEventHandlerStylus(e) {
 	drawInStylus(e);
@@ -111,10 +114,9 @@ randomColorButton.addEventListener("click", () => {
 generateStylusButton.addEventListener("click", generateStylus);
 
 clearStylusButton.addEventListener("click", () => {
-	// biome-ignore lint/complexity/noForEach: <explanation>
-	squares.forEach((square) => {
+	Array.from(stylus.getElementsByClassName("square"), (square) => {
 		square.classList.remove("draw");
-		square.style.cssText = `height: ${size}px; width: ${size}px;`;
+		square.style.cssText = `height: ${DF_STYLUS_PIXEL_WIDTH}px; width: ${DF_STYLUS_PIXEL_WIDTH}px;`;
 	});
 });
 
