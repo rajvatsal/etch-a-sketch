@@ -24,22 +24,18 @@ function renderStylus(totalSquares, len) {
 }
 
 function drawInStylus(e) {
-	e.target.setAttribute(
-		"style",
-		`height: ${DF_STYLUS_PIXEL_WIDTH}px; width: ${DF_STYLUS_PIXEL_WIDTH}px;`,
-	);
 	e.target.classList.add("draw");
+	e.target.style.backgroundColor = "";
 }
 
 function eraseInStylus(e) {
 	e.target.classList.remove("draw");
-	e.target.style.cssText = `height: ${DF_STYLUS_PIXEL_WIDTH}px; width: ${DF_STYLUS_PIXEL_WIDTH}px;`;
+	e.target.style.backgroundColor = "";
 }
 
 const getRandom = (upperBound) => Math.floor(Math.random() * (upperBound + 1));
 
 function drawRandom(clr, e) {
-	console.log(e.target);
 	e.target.style.backgroundColor = `hsl(${clr.hue}deg, ${clr.saturation}%, ${clr.lightness}%)`;
 	clr.reduceLightness();
 }
@@ -50,34 +46,36 @@ function removePreviousEventListeners() {
 	stylus.removeEventListener("mousedown", drawRandomColorsEventHandlerStylus);
 }
 
+const stopDraw = (event, fn) => () => stylus.removeEventListener(event, fn);
+
 const generateStylusButton = document.querySelector(".generate-stylus");
 const eraseInStylusButton = document.querySelector(".eraser");
 const penButton = document.querySelector(".pen");
 const randomColorButton = document.querySelector(".random-color");
-const squares = document.querySelectorAll(".square");
 const clearStylusButton = document.querySelector(".clear-stylus");
 const buttonAll = document.querySelectorAll("button");
 const stylus = document.querySelector(".draw-board");
-
 const DF_STYLUS_PIXEL_WIDTH = 8;
 const DF_STYLUS_PIXEL_COUNT = 64;
 
 renderStylus(DF_STYLUS_PIXEL_COUNT, DF_STYLUS_PIXEL_WIDTH);
 
 function drawEventHandlerStylus(e) {
+	const drawEvent = "mouseover";
+
 	drawInStylus(e);
-	stylus.addEventListener("mouseover", drawInStylus);
-	stylus.addEventListener("mouseup", () => {
-		stylus.removeEventListener("mouseover", drawInStylus);
-	});
+	stylus.addEventListener(drawEvent, drawInStylus);
+	stylus.addEventListener("mouseup", stopDraw(drawEvent, drawInStylus));
+	stylus.addEventListener("mouseleave", stopDraw(drawEvent, drawInStylus));
 }
 
 function eraseEventHandlerStylus(e) {
+	const drawEvent = "mouseover";
+
 	eraseInStylus(e);
-	stylus.addEventListener("mouseover", eraseInStylus);
-	stylus.addEventListener("mouseup", () => {
-		stylus.removeEventListener("mouseover", eraseInStylus);
-	});
+	stylus.addEventListener(drawEvent, eraseInStylus);
+	stylus.addEventListener("mouseup", stopDraw(drawEvent, eraseInStylus));
+	stylus.addEventListener("mouseleave", stopDraw(drawEvent, eraseInStylus));
 }
 
 function drawRandomColorsEventHandlerStylus(e) {
@@ -90,12 +88,12 @@ function drawRandomColorsEventHandlerStylus(e) {
 		},
 	};
 	const boundFn = drawRandom.bind(drawRandom, clr);
+	const drawEvent = "mouseover";
 
 	drawRandom(clr, e);
-	stylus.addEventListener("mouseover", boundFn);
-	stylus.addEventListener("mouseup", () => {
-		stylus.removeEventListener("mouseover", boundFn);
-	});
+	stylus.addEventListener(drawEvent, boundFn);
+	stylus.addEventListener("mouseup", stopDraw(drawEvent, boundFn));
+	stylus.addEventListener("mouseleave", stopDraw(drawEvent, boundFn));
 }
 
 eraseInStylusButton.addEventListener("click", () => {
@@ -116,7 +114,7 @@ generateStylusButton.addEventListener("click", generateStylus);
 clearStylusButton.addEventListener("click", () => {
 	Array.from(stylus.getElementsByClassName("square"), (square) => {
 		square.classList.remove("draw");
-		square.style.cssText = `height: ${DF_STYLUS_PIXEL_WIDTH}px; width: ${DF_STYLUS_PIXEL_WIDTH}px;`;
+		square.style.backgroundColor = "";
 	});
 });
 
